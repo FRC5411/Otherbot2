@@ -25,7 +25,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void arcade_mode(double speed, double rotation) {
-    m_robotdrive.arcadeDrive(speed, rotation);
+    m_robotdrive.arcadeDrive(speed, rotation, true);
   }
 
 

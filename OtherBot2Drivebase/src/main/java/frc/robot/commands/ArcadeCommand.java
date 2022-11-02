@@ -7,9 +7,12 @@ public class ArcadeCommand extends CommandBase {
   private double m_speed;
   private double m_rotation;
   private DriveSubsystem m_drive;
-
-  public ArcadeCommand(DriveSubsystem m_drive, double m_speed, double m_rotation) {
-    addRequirements(m_drive);
+//Messed up on the local and "gloabal" variables of the class
+  public ArcadeCommand(DriveSubsystem drive, double speed, double rotation) {
+    m_speed = speed;
+    m_rotation = rotation;
+    m_drive = drive;
+    addRequirements(drive);
   }
 
   @Override

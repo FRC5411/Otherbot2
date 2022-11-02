@@ -4,12 +4,15 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeCommand extends CommandBase{
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private double inspeed;
-    private double outspeed;
+    private double m_inspeed;
+    private double m_outspeed;
     private IntakeSubsystem m_intake;
-  
-    public IntakeCommand(IntakeSubsystem m_intake, double inspeed, double outspeed) {
-      addRequirements(m_intake);
+//Messed up on the local and "gloabal" variables of the class
+    public IntakeCommand(IntakeSubsystem intake, double inspeed, double outspeed) {
+      m_inspeed = inspeed;
+      m_outspeed = outspeed;
+      m_intake = intake;
+      addRequirements(intake);
     }
   
     @Override
@@ -17,7 +20,7 @@ public class IntakeCommand extends CommandBase{
   
     @Override
     public void execute() {
-      m_intake.intake(inspeed, outspeed);
+      m_intake.intake(m_inspeed, m_outspeed);
     }
   
     @Override
@@ -29,5 +32,4 @@ public class IntakeCommand extends CommandBase{
     public boolean isFinished() {
       return false;
     }
-  
 }
