@@ -12,10 +12,18 @@ public class IntakeSubsystem extends SubsystemBase{
     LeftIntake.follow(RightIntake);
   }
 
-  public void intake(double inspeed, double outspeed) {
-    double speed = inspeed - outspeed;
-    RightIntake.set(speed);
+  public void intake() {
+    RightIntake.set(1);
   }
+
+  public void outtake() {
+    RightIntake.set(-1);
+  }
+
+  public void notake() {
+    RightIntake.set(0);
+  }
+
 
   @Override
   public void periodic() {}

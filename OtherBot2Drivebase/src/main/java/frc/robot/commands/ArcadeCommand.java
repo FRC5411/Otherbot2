@@ -1,14 +1,17 @@
 package frc.robot.commands;
 import frc.robot.subsystems.DriveSubsystem;
+
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ArcadeCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private double m_speed;
-  private double m_rotation;
+  private DoubleSupplier m_speed;
+  private DoubleSupplier m_rotation;
   private DriveSubsystem m_drive;
 //Messed up on the local and "gloabal" variables of the class
-  public ArcadeCommand(DriveSubsystem drive, double speed, double rotation) {
+  public ArcadeCommand(DoubleSupplier speed, DoubleSupplier rotation, DriveSubsystem drive) {
     m_speed = speed;
     m_rotation = rotation;
     m_drive = drive;
@@ -20,7 +23,7 @@ public class ArcadeCommand extends CommandBase {
 
   @Override
   public void execute() {
-    m_drive.arcade_mode(m_speed, m_rotation);
+    m_drive.arcade_mode(m_speed.getAsDouble(), m_rotation.getAsDouble());
   }
 
   @Override
