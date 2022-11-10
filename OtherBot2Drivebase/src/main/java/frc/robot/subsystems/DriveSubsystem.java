@@ -15,7 +15,7 @@ public class DriveSubsystem extends SubsystemBase {
     LeftFront = new WPI_TalonSRX(4);
     LeftBack = new WPI_TalonSRX(2);
     RightFront = new WPI_TalonSRX(3);
-    RightBack =  new WPI_TalonSRX(1);
+    RightBack = new WPI_TalonSRX(1);
 
     LeftBack.follow(LeftFront);
     RightBack.follow(RightFront);
