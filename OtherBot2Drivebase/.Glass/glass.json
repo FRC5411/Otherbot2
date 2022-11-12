@@ -1,5 +1,8 @@
 {
+  "NetworkTables Log": {
+    "visible": true
+  },
   "NetworkTables Settings": {
-    "visible": false
+    "mode": "Client"
   }
 }
