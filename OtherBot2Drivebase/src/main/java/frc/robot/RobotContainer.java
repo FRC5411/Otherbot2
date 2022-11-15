@@ -23,8 +23,8 @@ public class RobotContainer {
     m_IntakeSubsystem = new IntakeSubsystem();
   
     m_driveSubsystem.setDefaultCommand(new ArcadeCommand(
-      () -> m_controller.getRightY(),
-      () -> m_controller.getLeftX(),
+      () -> m_controller.getLeftY(),
+      () -> m_controller.getRightX(),
       m_driveSubsystem
     ));
     configureButtonBindings();
