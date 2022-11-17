@@ -34,10 +34,13 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
+    //Intake and outake
     RT.whenPressed(new InstantCommand(m_IntakeSubsystem::intake, m_IntakeSubsystem));
     RT.whenReleased(new InstantCommand(m_IntakeSubsystem::notake, m_IntakeSubsystem));
     LT.whenPressed(new InstantCommand(m_IntakeSubsystem::outtake, m_IntakeSubsystem));
     LT.whenReleased(new InstantCommand(m_IntakeSubsystem::notake, m_IntakeSubsystem));
+    
+    //Moving the intake up and down
     DUp.whenPressed(new InstantCommand(m_IntakeSubsystem::uptake, m_IntakeSubsystem));
     DUp.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
     DDown.whenPressed(new InstantCommand(m_IntakeSubsystem::downtake, m_IntakeSubsystem));
