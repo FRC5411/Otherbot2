@@ -1,11 +1,14 @@
 package frc.robot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.ArcadeCommand;
+import frc.robot.commands.CircleCommand;
 
 public class RobotContainer {
   private DriveSubsystem m_driveSubsystem;
@@ -15,6 +18,8 @@ public class RobotContainer {
   private JoystickButton LT;
   private POVButton DDown;
   private POVButton DUp;
+  private Timer m_timer;
+  private CircleCommand CircularCommand;
 
   public RobotContainer() {
     m_controller = new XboxController(0);
@@ -31,6 +36,9 @@ public class RobotContainer {
       () -> m_controller.getRightX(),
       m_driveSubsystem));
     configureButtonBindings();
+
+
+    CircleCommand CircularCommand = new CircleCommand(5, 0.4, m_timer, m_driveSubsystem);
   }
 
   private void configureButtonBindings() {
@@ -45,5 +53,9 @@ public class RobotContainer {
     DUp.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
     DDown.whenPressed(new InstantCommand(m_IntakeSubsystem::downtake, m_IntakeSubsystem));
     DDown.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
+  }
+
+  public Command getCircularCommand() {
+    return CircularCommand;
   }
 }
