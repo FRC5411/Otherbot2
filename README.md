@@ -1,3 +1,2 @@
 # Otherbot2
-Otherbot2drivebase
-Currently re coding the intake for the new design. Just have to learn how to use a dpad
+Currently working on properly adapting autos on to my code.
