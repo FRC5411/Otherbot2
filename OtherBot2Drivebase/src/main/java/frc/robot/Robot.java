@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
   RobotContainer m_robotContainer;
-  Command CircularCommand;
+  Command m_AutoCommand;
 
   @Override
   public void robotInit() {
@@ -19,15 +19,21 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    CircularCommand = m_robotContainer.getCircularCommand();
-    CircularCommand.schedule();
+    m_AutoCommand = m_robotContainer.getAutoCommand();
+    if(m_AutoCommand != null) {
+      m_AutoCommand.schedule();
+    }
   }
   
   @Override
   public void autonomousPeriodic() {}
 
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    if(m_AutoCommand != null) {
+      m_AutoCommand.cancel();
+    }
+  }
 
   @Override
   public void teleopPeriodic() {}

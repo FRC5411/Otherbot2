@@ -1,8 +1,10 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.subsystems.DriveSubsystem;
@@ -19,7 +21,9 @@ public class RobotContainer {
   private POVButton DDown;
   private POVButton DUp;
   private Timer m_timer;
+  private SequentialCommandGroup ComplexCiruclarCommand;
   private CircleCommand CircularCommand;
+  private SendableChooser<Command> m_autochooser;
 
   public RobotContainer() {
     m_controller = new XboxController(0);
@@ -37,8 +41,15 @@ public class RobotContainer {
       m_driveSubsystem));
     configureButtonBindings();
 
-
-    CircleCommand CircularCommand = new CircleCommand(5, 0.4, m_timer, m_driveSubsystem);
+    m_autochooser = new SendableChooser<>();
+    CircleCommand CircularCommand = new CircleCommand(6, 0.1, m_timer, m_driveSubsystem);
+    ComplexCiruclarCommand = new SequentialCommandGroup(new CircleCommand(6, 0.1, m_timer, m_driveSubsystem),
+    new CircleCommand(5, 0.1, m_timer, m_driveSubsystem), new CircleCommand(4, 0.1, m_timer, m_driveSubsystem),
+    new CircleCommand(3, 0.1, m_timer, m_driveSubsystem), new CircleCommand(2, 0.1, m_timer, m_driveSubsystem),
+    new CircleCommand(1, 0.1, m_timer, m_driveSubsystem));
+    
+    m_autochooser.setDefaultOption("Circle", CircularCommand);
+    m_autochooser.addOption("Encompass Circle", ComplexCiruclarCommand);
   }
 
   private void configureButtonBindings() {
@@ -55,7 +66,7 @@ public class RobotContainer {
     DDown.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
   }
 
-  public Command getCircularCommand() {
-    return CircularCommand;
+  public Command getAutoCommand() {
+    return m_autochooser.getSelected();
   }
 }
