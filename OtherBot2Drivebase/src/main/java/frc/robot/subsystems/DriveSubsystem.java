@@ -43,7 +43,8 @@ public class DriveSubsystem extends SubsystemBase {
     double circinch = circumfrence/12;
     double time = circinch/IPM;
     double period = DPI * time;
-    while(timer.get() <= period) {
+    timer.start();
+    while(timer.get() <= time) {
       double rotation  = Math.atan(-1/Math.tan(period * timer.get()));
       m_robotdrive.arcadeDrive(speed, rotation);
     }
