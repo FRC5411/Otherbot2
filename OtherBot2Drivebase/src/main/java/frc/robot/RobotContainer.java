@@ -1,6 +1,6 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -11,6 +11,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.ArcadeCommand;
 import frc.robot.commands.CircleCommand;
+import frc.robot.commands.MoveCommand;
 
 public class RobotContainer {
   private DriveSubsystem m_driveSubsystem;
@@ -20,10 +21,10 @@ public class RobotContainer {
   private JoystickButton LT;
   private POVButton DDown;
   private POVButton DUp;
-  private Timer m_timer;
   private SequentialCommandGroup ComplexCiruclarCommand;
   private CircleCommand CircularCommand;
   private SendableChooser<Command> m_autochooser;
+  private MoveCommand DefaultAuto;
 
   public RobotContainer() {
     m_controller = new XboxController(0);
@@ -34,6 +35,14 @@ public class RobotContainer {
 
     m_driveSubsystem = new DriveSubsystem();
     m_IntakeSubsystem = new IntakeSubsystem();
+
+    m_autochooser = new SendableChooser<>();
+    DefaultAuto = new MoveCommand(1, 20, m_driveSubsystem);
+    CircleCommand CircularCommand = new CircleCommand(6, 0.1, m_driveSubsystem);
+    ComplexCiruclarCommand = new SequentialCommandGroup(new CircleCommand(6, 0.1, m_driveSubsystem),
+    new CircleCommand(5, 0.1, m_driveSubsystem), new CircleCommand(4, 0.1, m_driveSubsystem),
+    new CircleCommand(3, 0.1, m_driveSubsystem), new CircleCommand(2, 0.1, m_driveSubsystem),
+    new CircleCommand(1, 0.1, m_driveSubsystem));
   
     m_driveSubsystem.setDefaultCommand(new ArcadeCommand(
       () -> m_controller.getLeftY(),
@@ -41,14 +50,10 @@ public class RobotContainer {
       m_driveSubsystem));
     configureButtonBindings();
 
-    m_autochooser = new SendableChooser<>();
-    CircleCommand CircularCommand = new CircleCommand(6, 0.1, m_timer, m_driveSubsystem);
-    ComplexCiruclarCommand = new SequentialCommandGroup(new CircleCommand(6, 0.1, m_timer, m_driveSubsystem),
-    new CircleCommand(5, 0.1, m_timer, m_driveSubsystem), new CircleCommand(4, 0.1, m_timer, m_driveSubsystem),
-    new CircleCommand(3, 0.1, m_timer, m_driveSubsystem), new CircleCommand(2, 0.1, m_timer, m_driveSubsystem),
-    new CircleCommand(1, 0.1, m_timer, m_driveSubsystem));
-    
-    m_autochooser.setDefaultOption("Circle", CircularCommand);
+
+    Shuffleboard.getTab("Anonyomous").add("Auto Dashboard", m_autochooser);    
+    m_autochooser.setDefaultOption("Move", DefaultAuto);
+    m_autochooser.addOption("Circle", CircularCommand);
     m_autochooser.addOption("Encompass Circle", ComplexCiruclarCommand);
   }
 
