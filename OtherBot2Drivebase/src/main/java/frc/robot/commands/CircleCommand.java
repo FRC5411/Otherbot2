@@ -1,5 +1,6 @@
 package frc.robot.commands;
-import frc.robot.subsystems.DriveSubsystem;
+//import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.sim.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class CircleCommand extends CommandBase {
@@ -21,7 +22,9 @@ public class CircleCommand extends CommandBase {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+    m_drivesubsystem.circle_mode(m_radius, m_speed);
+  }
 
   @Override
   public void end(boolean interrupted) {}

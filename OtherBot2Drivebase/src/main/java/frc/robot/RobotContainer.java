@@ -7,8 +7,10 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
+//import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.sim.DriveSubsystem;
+//import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.sim.IntakeSubsystem;
 import frc.robot.commands.ArcadeCommand;
 import frc.robot.commands.CircleCommand;
 import frc.robot.commands.MoveCommand;
@@ -38,11 +40,11 @@ public class RobotContainer {
 
     m_autochooser = new SendableChooser<>();
     DefaultAuto = new MoveCommand(1, 20, m_driveSubsystem);
-    CircleCommand CircularCommand = new CircleCommand(6, 0.1, m_driveSubsystem);
-    ComplexCiruclarCommand = new SequentialCommandGroup(new CircleCommand(6, 0.1, m_driveSubsystem),
-    new CircleCommand(5, 0.1, m_driveSubsystem), new CircleCommand(4, 0.1, m_driveSubsystem),
-    new CircleCommand(3, 0.1, m_driveSubsystem), new CircleCommand(2, 0.1, m_driveSubsystem),
-    new CircleCommand(1, 0.1, m_driveSubsystem));
+    CircleCommand CircularCommand = new CircleCommand(6, 1, m_driveSubsystem);
+    ComplexCiruclarCommand = new SequentialCommandGroup(new CircleCommand(6, 1, m_driveSubsystem),
+    new CircleCommand(5, 1, m_driveSubsystem), new CircleCommand(4, 1, m_driveSubsystem),
+    new CircleCommand(3, 1, m_driveSubsystem), new CircleCommand(2, 1, m_driveSubsystem),
+    new CircleCommand(1, 1, m_driveSubsystem));
   
     m_driveSubsystem.setDefaultCommand(new ArcadeCommand(
       () -> m_controller.getLeftY(),

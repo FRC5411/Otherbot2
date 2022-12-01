@@ -1,18 +1,14 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.sim;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class IntakeSubsystem extends SubsystemBase{
-  private WPI_VictorSPX RightIntake;
-  private WPI_VictorSPX VertIntake;
+  private PWMSparkMax RightIntake;
+  private PWMSparkMax VertIntake;
 
   public IntakeSubsystem() {
-    RightIntake = new WPI_VictorSPX(6);
-    VertIntake = new WPI_VictorSPX(7);
-
-    RightIntake.setNeutralMode(NeutralMode.Brake);
-    VertIntake.setNeutralMode(NeutralMode.Brake);
+    RightIntake = new PWMSparkMax(6);
+    VertIntake = new PWMSparkMax(7);
   }
 
   public void intake() {
