@@ -1,14 +1,19 @@
 package frc.robot.subsystems.sim;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase{
   private PWMSparkMax RightIntake;
-  private PWMSparkMax VertIntake;
+  private PWMSparkMax RVertIntake;
+  private PWMSparkMax LVertIntake;
+  private MotorControllerGroup Upper;
 
   public IntakeSubsystem() {
     RightIntake = new PWMSparkMax(6);
-    VertIntake = new PWMSparkMax(7);
+    RVertIntake = new PWMSparkMax(7);
+    LVertIntake = new PWMSparkMax(8);
+    Upper = new MotorControllerGroup(RVertIntake, LVertIntake);
   }
 
   public void intake() {
@@ -24,15 +29,15 @@ public class IntakeSubsystem extends SubsystemBase{
   }
 
   public void uptake(){
-    VertIntake.set(1);
+    Upper.set(1);
   }
 
   public void downtake(){
-    VertIntake.set(-1);
+    Upper.set(-1);
   }
 
   public void novertake(){
-    VertIntake.set(0);
+    Upper.set(0);
   }
 
 

@@ -55,7 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
     timer.start();
     while(timer.get() < time){
       m_robotdrive.arcadeDrive(speed, rotation);
-      System.out.println(timer.get());
+//      System.out.println(timer.get());
     }
     m_robotdrive.arcadeDrive(0, 0);
   }

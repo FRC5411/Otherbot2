@@ -31,7 +31,10 @@ public class DriveSubsystem extends SubsystemBase {
     LeftBack.setInverted(true);
     LeftFront.setInverted(true);
 
-    m_robotdrive = new DifferentialDrive(Left, Right);
+    LeftBack.follow(LeftFront);
+    RightBack.follow(RightFront);
+
+    m_robotdrive = new DifferentialDrive(LeftFront, RightFront);
   }
 
   public void arcade_mode(double speed, double rotation) {
