@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class IntakeSubsystem extends SubsystemBase{
   private WPI_TalonSRX RightIntake;
@@ -10,7 +9,7 @@ public class IntakeSubsystem extends SubsystemBase{
   private WPI_TalonSRX LVertIntake;
 
   public IntakeSubsystem() {
-    RightIntake = new WPI_TalonSRX(6);
+    RightIntake = new WPI_TalonSRX(18);
     RVertIntake = new WPI_TalonSRX(17);
     LVertIntake = new WPI_TalonSRX(16);
 
