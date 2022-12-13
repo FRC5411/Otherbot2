@@ -17,10 +17,10 @@ public class DriveSubsystem extends SubsystemBase {
   private DifferentialDrive m_robotdrive;
   
   public DriveSubsystem() {
-    LeftFront  = new WPI_VictorSPX(11);
+    LeftFront  = new WPI_VictorSPX(12);
     LeftBack   = new WPI_VictorSPX(13);
-    RightFront = new WPI_VictorSPX(10);
-    RightBack  = new WPI_VictorSPX(12);
+    RightFront = new WPI_VictorSPX(14);
+    RightBack  = new WPI_VictorSPX(15);
 
     LeftFront.setNeutralMode(NeutralMode.Brake);
     LeftBack.setNeutralMode(NeutralMode.Brake);

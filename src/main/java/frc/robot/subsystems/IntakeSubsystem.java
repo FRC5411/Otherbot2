@@ -41,7 +41,7 @@ public class IntakeSubsystem extends SubsystemBase{
   }
 
   public void novertake(){
-    RVertIntake.set(0);
+    RVertIntake.set(0.1);
   }
 
   public void intakedance(double time, double speed) {
