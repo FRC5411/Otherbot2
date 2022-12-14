@@ -33,15 +33,15 @@ public class IntakeSubsystem extends SubsystemBase{
   }
 
   public void uptake(){
-    RVertIntake.set(0.5);
-  }
-
-  public void downtake(){
     RVertIntake.set(-0.5);
   }
 
+  public void downtake(){
+    RVertIntake.set(0.5);
+  }
+
   public void novertake(){
-    RVertIntake.set(0.1);
+    RVertIntake.set(0);
   }
 
   public void intakedance(double time, double speed) {

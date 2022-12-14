@@ -68,8 +68,8 @@ public class RobotContainer {
     //Moving the intake up and down
     intakeUpButton.whenPressed(new InstantCommand(m_IntakeSubsystem::uptake, m_IntakeSubsystem));
     intakeUpButton.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
-    intakeDownButton.whenPressed(new InstantCommand(m_IntakeSubsystem::downtake, m_IntakeSubsystem));
-    intakeDownButton.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
+    intakeUpButton.whenPressed(new InstantCommand(m_IntakeSubsystem::downtake, m_IntakeSubsystem));
+    intakeUpButton.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
   }
 
   public Command getAutoCommand() {
