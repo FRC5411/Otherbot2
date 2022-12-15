@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.subsystems.DriveSubsystem;
 //import frc.robot.subsystems.sim.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -21,7 +22,7 @@ public class RobotContainer {
   private JoystickButton intakeInButton;
   private JoystickButton intakeOutButton;
   private JoystickButton intakeUpButton;
-  private JoystickButton intakeDownButton;
+  private POVButton intakeDownButton;
   private SequentialCommandGroup ComplexCiruclarCommand;
   private CircleCommand CircularCommand;
   private SendableChooser<Command> m_autochooser;
@@ -32,7 +33,7 @@ public class RobotContainer {
     intakeOutButton = new JoystickButton(m_controller, XboxController.Button.kB.value);
     intakeInButton = new JoystickButton(m_controller, XboxController.Button.kX.value);
     intakeUpButton = new JoystickButton(m_controller, XboxController.Button.kY.value);
-    intakeDownButton = new JoystickButton(m_controller, XboxController.Button.kA.value);
+    intakeDownButton = new POVButton(m_controller, 45);
 
     m_driveSubsystem = new DriveSubsystem();
     m_IntakeSubsystem = new IntakeSubsystem();
@@ -68,8 +69,8 @@ public class RobotContainer {
     //Moving the intake up and down
     intakeUpButton.whenPressed(new InstantCommand(m_IntakeSubsystem::uptake, m_IntakeSubsystem));
     intakeUpButton.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
-    intakeUpButton.whenPressed(new InstantCommand(m_IntakeSubsystem::downtake, m_IntakeSubsystem));
-    intakeUpButton.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
+    intakeDownButton.whenPressed(new InstantCommand(m_IntakeSubsystem::downtake, m_IntakeSubsystem));
+    intakeDownButton.whenReleased(new InstantCommand(m_IntakeSubsystem::novertake, m_IntakeSubsystem));
   }
 
   public Command getAutoCommand() {
